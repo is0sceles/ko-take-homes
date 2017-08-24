@@ -1,4 +1,4 @@
-# Sci-Fi Movies React Project
+# Movies Evan Likes!
 
 ## Setup
 
