@@ -28,3 +28,8 @@ html, body
 .app-description__content {
   margin: 1rem 0;
 }
+
+/* Movies */
+a {
+  padding: 5px;
+}
