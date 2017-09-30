@@ -17,7 +17,6 @@ export default class Movies extends React.Component {
     // bind context
     this.filterSearch = this.filterSearch.bind(this);
     this.onDropDownSelect = this.onDropDownSelect.bind(this);
-    this.onExpand = this.onExpand.bind(this);
     // compute decades and populate dropdown
     this.state.movies.forEach((movie) => {
       const years = movie.year;
@@ -106,18 +105,15 @@ export default class Movies extends React.Component {
               const B = b.title;
               return (A < B) ? -1 : (A > B) ? 1 : 0;
             }).map((movie, index) =>
-              <li
-                key={movie.id}
-                onClick={this.onExpand.bind(this, index)}
-              >
+              <li key={movie.id}>
                 {movie.score * 100}%
-                <a href={movie.url}>{movie.title}</a> ({movie.year})
-                {/* {
-                  this.state.reviewsVisible
-                    ? <Reviews />
+                <a href={movie.url}>{movie.title}</a>
+                <span onClick={this.onExpand.bind(this, index)}>({movie.year})</span>
+                {
+                  this.state.showItems[index]
+                    ? <Reviews reviews={this.state.reviews} movieId={movie.id} />
                     : null
-                } */}
-                {this.state.showItems[index] ? <Reviews /> : null}
+                }
               </li>)}
           </ul>
         </div>
