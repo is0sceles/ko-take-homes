@@ -1,6 +1,6 @@
 html, body
 {
-  font-family: fantasy, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 100%;
 }
 
@@ -48,13 +48,39 @@ input {
   width: 100%;
 }
 
+.movie_review {
+  font-family: monospace;
+}
+
+.movie-score {
+  margin-right: 5px;
+  font-size: 10px;
+}
+
 .drop-down {
   font: small-caption;
   padding: 20px;
+}
+
+.info {
+  font-family: monospace;
+  background: #333;
+  font-size: 10px;
+  color: #FFF;
+  padding: 5px;
+}
+
+.expand {
+  margin-left: 5px;
+  width: 40%;
 }
 
 .expand:hover {
   font-stretch: ultra-expanded;
   color: #3cb371;  
   cursor: pointer;
+}
+
+.card-link {
+  font-family: serif;
 }

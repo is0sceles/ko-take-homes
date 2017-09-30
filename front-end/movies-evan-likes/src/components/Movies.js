@@ -107,9 +107,9 @@ export default class Movies extends React.Component {
                 className="list-group-item"
                 key={movie.id}
               >
-                {movie.score * 100}%
+                <span className="movie-score"> {movie.score * 100}% </span>
                 <a className="card-link" href={movie.url}>{movie.title}</a>
-                <span className="expand" onClick={this.onExpand.bind(this, index)}>({movie.year})</span>
+                <span className="expand" onClick={this.onExpand.bind(this, index)}> <span className="info"> Released: {movie.year}</span></span>
                 {
                   this.state.showItems[index]
                     ? <Reviews reviews={this.state.reviews} movieId={movie.id} movies={this.state.movies} />
