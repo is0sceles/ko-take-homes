@@ -1,6 +1,6 @@
 import React from 'react';
-
 import Data from '../../api/data.json';
+import Reviews from './Reviews';
 
 export default class Movies extends React.Component {
   constructor() {
@@ -12,7 +12,12 @@ export default class Movies extends React.Component {
       yearsToDecades: {},
       filteredMovies: [],
       filteredYears: [],
+      showItems: [],
     };
+    // bind context
+    this.filterSearch = this.filterSearch.bind(this);
+    this.onDropDownSelect = this.onDropDownSelect.bind(this);
+    this.onExpand = this.onExpand.bind(this);
     // compute decades and populate dropdown
     this.state.movies.forEach((movie) => {
       const years = movie.year;
@@ -28,9 +33,19 @@ export default class Movies extends React.Component {
       filteredYears: this.state.yearsToDecades[e.target.value],
     });
   }
+  // handling reviews (child) component
+  onExpand(index) {
+    console.log('i was clicked', index);
+    // this.setState({
+    //   reviewsVisible: !this.state.reviewsVisible,
+    // });
+    const showItems = this.state.showItems.slice(0);
+    showItems[index] = !showItems[index];
+    this.setState({ showItems });
+  }
   // dynamically create decade options for dropDown
   createDecadeDropDown() {
-    const options = [<option key={1} value={'default'}>Year</option>];
+    const options = [<option key={1} value={'default'}>All Years</option>];
     if (options.length === 1) {
       for (const decades in this.state.yearsToDecades) {
         options.push(<option key={Math.random(decades / 20)} value={decades}>{decades}</option>);
@@ -67,7 +82,7 @@ export default class Movies extends React.Component {
               <input
                 type="text"
                 placeholder="Search by title"
-                onChange={this.filterSearch.bind(this)}
+                onChange={this.filterSearch}
                 value={this.state.search}
               />
             </fieldset>
@@ -78,7 +93,7 @@ export default class Movies extends React.Component {
           Decade:
           <select
             id="select-decade"
-            onChange={this.onDropDownSelect.bind(this)}
+            onChange={this.onDropDownSelect}
           >
             {this.createDecadeDropDown()}
           </select>
@@ -90,10 +105,19 @@ export default class Movies extends React.Component {
               const A = a.title;
               const B = b.title;
               return (A < B) ? -1 : (A > B) ? 1 : 0;
-            }).map(movie =>
-              <li key={movie.id}>
+            }).map((movie, index) =>
+              <li
+                key={movie.id}
+                onClick={this.onExpand.bind(this, index)}
+              >
                 {movie.score * 100}%
                 <a href={movie.url}>{movie.title}</a> ({movie.year})
+                {/* {
+                  this.state.reviewsVisible
+                    ? <Reviews />
+                    : null
+                } */}
+                {this.state.showItems[index] ? <Reviews /> : null}
               </li>)}
           </ul>
         </div>
