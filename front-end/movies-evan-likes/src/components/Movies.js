@@ -1,6 +1,8 @@
+
 import React from 'react';
-import Data from '../../api/data.json';
+
 import Reviews from './Reviews';
+import Data from '../../api/data.json';
 
 export default class Movies extends React.Component {
   constructor() {
@@ -32,12 +34,8 @@ export default class Movies extends React.Component {
       filteredYears: this.state.yearsToDecades[e.target.value],
     });
   }
-  // handling reviews (child) component
+  // handling reviews (child) component by item clicked
   onExpand(index) {
-    console.log('i was clicked', index);
-    // this.setState({
-    //   reviewsVisible: !this.state.reviewsVisible,
-    // });
     const showItems = this.state.showItems.slice(0);
     showItems[index] = !showItems[index];
     this.setState({ showItems });
@@ -111,7 +109,7 @@ export default class Movies extends React.Component {
                 <span onClick={this.onExpand.bind(this, index)}>({movie.year})</span>
                 {
                   this.state.showItems[index]
-                    ? <Reviews reviews={this.state.reviews} movieId={movie.id} />
+                    ? <Reviews reviews={this.state.reviews} movieId={movie.id} movies={this.state.movies} />
                     : null
                 }
               </li>)}
