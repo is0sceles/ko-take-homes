@@ -25,7 +25,7 @@ export default class Reviews extends Component {
   render() {
     return (
       <div className="movie_review">
-        <img src={this.state.imageUrl} />
+        <img className="card-img-top" src={this.state.imageUrl} />
         <p> {this.state.review} </p>
       </div>
     );

@@ -96,17 +96,20 @@ export default class Movies extends React.Component {
           </select>
         </div>
         {/* movie list display */}
-        <div className="movie-list">
-          <ul>
+        <div className="card">
+          <ul className="list-group list-group-flush">
             {this.state.filteredMovies.sort((a, b) => {
               const A = a.title;
               const B = b.title;
               return (A < B) ? -1 : (A > B) ? 1 : 0;
             }).map((movie, index) =>
-              <li key={movie.id}>
+              <li
+                className="list-group-item"
+                key={movie.id}
+              >
                 {movie.score * 100}%
-                <a href={movie.url}>{movie.title}</a>
-                <span onClick={this.onExpand.bind(this, index)}>({movie.year})</span>
+                <a className="card-link" href={movie.url}>{movie.title}</a>
+                <span className="expand" onClick={this.onExpand.bind(this, index)}>({movie.year})</span>
                 {
                   this.state.showItems[index]
                     ? <Reviews reviews={this.state.reviews} movieId={movie.id} movies={this.state.movies} />
