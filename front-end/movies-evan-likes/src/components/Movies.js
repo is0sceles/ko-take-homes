@@ -15,6 +15,7 @@ export default class Movies extends React.Component {
       filteredMovies: [],
       filteredYears: [],
       showItems: [],
+      dropDownVal: '',
     };
     // bind context
     this.filterSearch = this.filterSearch.bind(this);
@@ -32,6 +33,7 @@ export default class Movies extends React.Component {
   onDropDownSelect(e) {
     this.setState({
       filteredYears: this.state.yearsToDecades[e.target.value],
+      dropDownVal: e.target.value,
     });
   }
   // handling reviews (child) component by item clicked
@@ -57,7 +59,7 @@ export default class Movies extends React.Component {
     });
   }
   render() {
-    // Filter for title and decade search
+    // filter for title and decade search
     this.state.filteredMovies = this.state.movies
           .filter((movie) => {
             let result = '';
@@ -75,7 +77,7 @@ export default class Movies extends React.Component {
           <form>
             <fieldset className="form-group">
               {/* title search input */}
-              Title contains:
+              Title contains
               <input
                 type="text"
                 placeholder="Search by title"
@@ -87,10 +89,11 @@ export default class Movies extends React.Component {
         </div>
         {/* drop down filter */}
         <div className="drop-down">
-          Decade:
+          Decade
           <select
             id="select-decade"
             onChange={this.onDropDownSelect}
+            value={this.state.dropDownVal}
           >
             {this.createDecadeDropDown()}
           </select>
@@ -109,7 +112,9 @@ export default class Movies extends React.Component {
               >
                 <span className="movie-score"> {movie.score * 100}% </span>
                 <a className="card-link" href={movie.url}>{movie.title}</a>
-                <span className="expand" onClick={this.onExpand.bind(this, index)}> <span className="info"> Released: {movie.year}</span></span>
+                <span className="expand" onClick={this.onExpand.bind(this, index)}>
+                  <span className="info"> Released: {movie.year} </span>
+                </span>
                 {
                   this.state.showItems[index]
                     ? <Reviews reviews={this.state.reviews} movieId={movie.id} movies={this.state.movies} />
