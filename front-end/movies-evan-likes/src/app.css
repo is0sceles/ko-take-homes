@@ -48,6 +48,10 @@ input {
   width: 100%;
 }
 
+img {
+  border-radius: 2%;
+}
+
 .movie_review {
   font-family: monospace;
 }
