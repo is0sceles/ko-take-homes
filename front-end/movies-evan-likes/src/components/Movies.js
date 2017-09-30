@@ -20,7 +20,7 @@ export default class Movies extends React.Component {
     // bind context
     this.filterSearch = this.filterSearch.bind(this);
     this.onDropDownSelect = this.onDropDownSelect.bind(this);
-    // compute decades and populate dropdown
+    // compute decades
     this.state.movies.forEach((movie) => {
       const years = movie.year;
       const decades = Math.floor(years / 10) * 10;
@@ -29,7 +29,7 @@ export default class Movies extends React.Component {
     // populate dropDown when constructor is called
     this.createDecadeDropDown();
   }
-  // select the years inside chosen decade
+  // filter movie results based on chosen decade
   onDropDownSelect(e) {
     this.setState({
       filteredYears: this.state.yearsToDecades[e.target.value],
@@ -52,13 +52,16 @@ export default class Movies extends React.Component {
     }
     return options;
   }
-  // filter movie results based on search
+  // filter movie results based on input search
   filterSearch(e) {
     this.setState({
       search: e.target.value,
     });
   }
   render() {
+    if (this.state.filteredYears === undefined) {
+      this.state.filteredYears = [];
+    }
     // filter for title and decade search
     this.state.filteredMovies = this.state.movies
           .filter((movie) => {
