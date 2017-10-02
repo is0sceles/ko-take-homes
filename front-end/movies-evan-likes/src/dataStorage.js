@@ -13,9 +13,9 @@ function populateStorage() {
   window.localStorage.setItem('review-data', JSON.stringify(reviewData));
 }
 
-let dataObj = {};
-export default dataObj = {
-  movies: JSON.parse(window.localStorage.getItem('movie-data')),
-  reviews: JSON.parse(window.localStorage.getItem('review-data')),
-};
+const dataObj = {};
+dataObj.movies = JSON.parse(window.localStorage.getItem('movie-data'));
+dataObj.reviews = JSON.parse(window.localStorage.getItem('review-data'));
+
+export default dataObj;
 
