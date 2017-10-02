@@ -2,6 +2,9 @@ import React from 'react';
 
 import Movies from './components/Movies';
 
+import Data from './dataStorage';
+
+
 export default () =>
   <div className="page">
     <div className="app-description">
@@ -11,5 +14,5 @@ export default () =>
         likes.
       </p>
     </div>
-    <Movies />
+    <Movies data={Data} />
   </div>;

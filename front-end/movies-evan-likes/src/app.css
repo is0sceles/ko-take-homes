@@ -74,14 +74,18 @@ img {
   padding: 5px;
 }
 
+.info:hover {
+  font-stretch: ultra-expanded;
+  background: #dcdcdc; 
+  color: #000;
+}
+
 .expand {
   margin-left: 5px;
   width: 40%;
 }
 
 .expand:hover {
-  font-stretch: ultra-expanded;
-  color: #3cb371;  
   cursor: pointer;
 }
 

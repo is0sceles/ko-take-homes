@@ -2,14 +2,13 @@
 import React from 'react';
 
 import Reviews from './Reviews';
-import Data from '../../api/data.json';
 
 export default class Movies extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      movies: Data.movies,
-      reviews: Data.reviews,
+      movies: this.props.data.movies,
+      reviews: this.props.data.reviews,
       search: '',
       yearsToDecades: {},
       filteredMovies: [],
